@@ -16,10 +16,15 @@
             width: 100%;
             height: 30px;
         }
+
+        textarea {
+          width: 100%;
+          height: 100px;
+        }
+
         select {
             display: flex;
             width: 30%;
-            text-align: left;
         }
         
 
@@ -31,8 +36,24 @@
         gap: 1rem;
         
         input {
-            
+          width: 100%;
+          height: 30px;
         }
+        
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 1fr;
+
+      ul {
+        
+        li {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          text-align: left;
+        }
+      }
     }
 
 
