@@ -1,5 +1,9 @@
 .div {
-
+  width: 100%;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 1rem;
 
   .form {
     display: grid;
@@ -22,11 +26,36 @@
           height: 100px;
         }
 
-        select {
-            display: flex;
-            width: 30%;
-        }
         
+        
+
+    }
+
+
+    .method {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      span {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        text-align: left;
+      }
+
+      label {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        text-align: left;
+        // grid-column-start: 1;
+        // grid-column-end: 2;
+
+        input {
+          width: 100%;
+          grid-column-start: 3;
+          grid-column-end: 3;
+        }
+      }
 
     }
 
@@ -34,6 +63,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
+        
         
         input {
           width: 100%;

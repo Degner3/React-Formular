@@ -1,7 +1,13 @@
 import style from "./Controlled.module.scss";
 import { useState } from "react";
 
+// Controlled input:
+
+// Controller (kontrolleret): Er en form hvor man ved hver tast "lytter" efter på input felter med et onChange event og opdaterer tilstanden løbende.
+
 export const Controlled = () => {
+
+  // States til at gemme strings fra input felter
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -13,6 +19,7 @@ export const Controlled = () => {
   function onSubmitForm(event) {
     event.preventDefault();
     
+     // funktion der tager name og email og sender dem med en post....
     const data = {
       fullName,
       phoneNumber,
@@ -21,12 +28,19 @@ export const Controlled = () => {
       preferredMethod,
     };
 
-    
+    // Opdater sendtData med de indtastede oplysninger
     setSendtData(data);
+
+    console.log(event);
+    console.log("fullname: ", setFullName);
+    console.log("Phonenumber: ", setPhoneNumber);
+    console.log("email: ", setEmail);
+    console.log("comments: ", setComments);
+    console.log("preferredMethod: ", setPreferredMethod);
   }
 
   const handleReset = () => {
-    
+    // Nulstil alle formularfelter og sendtData
     setFullName("");
     setPhoneNumber("");
     setEmail("");
@@ -39,7 +53,7 @@ export const Controlled = () => {
     <div className={style.div}>
       <form onSubmit={(event) => onSubmitForm(event)} className={style.form}>
         <label htmlFor="fullName">
-          fullName:
+          Full Name:
           <input
             id="fullName"
             name="fullName"
@@ -56,12 +70,14 @@ export const Controlled = () => {
             name="phoneNumber"
             onChange={(e) => setPhoneNumber(e.target.value)}
             value={phoneNumber}
+            type="number"
           />
         </label>
 
         <label htmlFor="email">
           Email:
           <input
+            id="email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             type="email"
@@ -72,6 +88,7 @@ export const Controlled = () => {
         <label htmlFor="comments">
           Comments:
           <textarea
+          id="comments"
             onChange={(e) => setComments(e.target.value)}
             value={comments}
             type="comments"
@@ -79,35 +96,66 @@ export const Controlled = () => {
           ></textarea>
         </label>
 
-        <label htmlFor="preferredMethod">
+        {/* <label htmlFor="preferredMethod">
           Preferred contact method:
           <select
-            onChange={(e) => setPreferredMethod(e.target.value)}
+            id="preferredMethod"
             value={preferredMethod}
             name="preferredMethod"
+            type="radio"
           >
-            <option value="">Vælg en metode</option>
-            <option value="telefon">Telefon</option>
+            <option value="">Choose a method</option>
+            <option value="phoneNumber">Phone Number</option>
             <option value="email">Email</option>
           </select>
-        </label>
+        </label> */}
+        <div className={style.method}>
+          <span>Preferred contact method:</span>
+          <label htmlFor="preferredMethod">
+            Phone
+            <input
+              id="phoneNumber"
+              name="preferredMethod"
+              type="radio"
+              checked={preferredMethod === "phone"}
+              onClick={() => setPreferredMethod("phone")}
+            />
+          </label>
+          <label htmlFor="emailMethod">
+            Email
+            <input
+              id="email"
+              name="contactMethod"
+              type="radio"
+              checked={preferredMethod === "email"}
+              onClick={() => setPreferredMethod("email")}
+            />
+          </label>
+        </div>
+
         <div>
           <input type="submit" value="Send" />
-          <input
-            type="reset"
-            value="Reset"
-            onClick={() => handleReset()}
-          />
+          <input type="reset" value="Reset" onClick={() => handleReset()} />
         </div>
 
         <div className={style.info}>
           {sendtData && (
             <ul>
-              <li><h2>Informations:</h2></li>
-              <li>Fulde navn: <p>{sendtData.fullName}</p></li>
-              <li>Telefonnummer: <p>{sendtData.phoneNumber}</p></li>
-              <li>Email: <p>{sendtData.email}</p></li>
-              <li>Kommentar: <p>{sendtData.comments}</p></li>
+              <li>
+                <h2>Informations:</h2>
+              </li>
+              <li>
+                Fulde navn: <p>{sendtData.fullName}</p>
+              </li>
+              <li>
+                Telefonnummer: <p>{sendtData.phoneNumber}</p>
+              </li>
+              <li>
+                Email: <p>{sendtData.email}</p>
+              </li>
+              <li>
+                Kommentar: <p>{sendtData.comments}</p>
+              </li>
               <li>
                 Foretrukken kontaktmetode: <p>{sendtData.preferredMethod}</p>
               </li>
