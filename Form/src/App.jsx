@@ -12,8 +12,12 @@ function App() {
         <Controlled/>
       </section>
       <section>
-        <h1>Uncontrolled input:</h1>
+        <h1>Uncontrolled input</h1>
         {/* <Uncontrolled/> */}
+      </section>
+      <section>
+        <h1></h1>
+        
       </section>
       
     </>
